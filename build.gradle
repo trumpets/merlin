@@ -7,7 +7,7 @@ apply plugin: "idea"
 apply plugin: "maven-publish"
 
 group 'camelot'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 sourceCompatibility = 1.8
 
@@ -47,6 +47,10 @@ def pomConfig = {
             email "ivo.neskovic@gmail.com"
         }
     }
+
+    scm {
+        url "https://github.com/trumpets/merlin/"
+    }
 }
 
 publishing {
@@ -69,12 +73,20 @@ bintray {
     user = bintrayUser
     key = bintrayKey
     publications = ['mavenJava']
+
+    publish = true
+    override = true
+
     pkg {
-        userOrg = 'Camelot'
-        repo = 'camelot'
-        name = 'test-plugin'
+        repo = 'Camelot'
+        name = 'merlin-gradle'
         desc = "Some testing”"
         licenses = ['Apache-2.0']
-        labels = ["publish"]
+        vcsUrl = 'https://github.com/trumpets/merlin.git'
+
+        version {
+            name = "1.0"
+            released  = new Date()
+        }
     }
 }
